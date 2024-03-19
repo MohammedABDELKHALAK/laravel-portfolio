@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -38,6 +39,7 @@ Route::get('/show/{id}', [ShowMessagesController::class, 'show'] )->middleware([
 
 Route::resource('skills', SkillController::class)->middleware(['auth', 'verified']);
 Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
+Route::resource('experience', ExperienceController::class)->middleware(['auth', 'verified']);
 
 // Route::resource('resume', ResumeController::class);
 

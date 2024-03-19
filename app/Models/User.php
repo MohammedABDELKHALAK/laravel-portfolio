@@ -62,6 +62,10 @@ class User extends Authenticatable
         return $this->hasOne(Social::class);
     }
 
+    public function experience(){
+        return $this->hasMany(Experience::class);
+    }
+
     public static function boot(){
         
         parent::boot();

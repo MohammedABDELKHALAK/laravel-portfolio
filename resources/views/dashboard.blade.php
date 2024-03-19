@@ -2,6 +2,20 @@
 
 @section('content')
 
+<style>
+    /* this style for message td in table to show just a part of messages with three points (...) */
+    .message-cell {
+        max-width: 200px;
+        /* Set the maximum width for the cell */
+        white-space: nowrap;
+        /* Prevent text from wrapping */
+        overflow: hidden;
+        /* Hide the overflowing text */
+        text-overflow: ellipsis;
+        /* Display ellipsis (...) for overflow */
+    }
+</style>
+
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -68,19 +82,4 @@
             </table>
 
         </div>
-
-        <style>
-            /* this style for message td in table to show just a part of messages with three points (...) */
-            .message-cell {
-                max-width: 200px;
-                /* Set the maximum width for the cell */
-                white-space: nowrap;
-                /* Prevent text from wrapping */
-                overflow: hidden;
-                /* Hide the overflowing text */
-                text-overflow: ellipsis;
-                /* Display ellipsis (...) for overflow */
-            }
-        </style>
-
     @endsection

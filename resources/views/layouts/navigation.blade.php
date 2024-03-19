@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex display-flex ">
-                    <x-nav-link class="no-underline" :href="route('projects.index')" :active="request()->routeIs('projects.index')">
+                    <x-nav-link class="no-underline" :href="route('experience.index')" :active="request()->routeIs('experience.index')">
                         {{ __('Experience') }}
                     </x-nav-link>
                     
