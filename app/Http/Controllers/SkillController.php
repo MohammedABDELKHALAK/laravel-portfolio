@@ -54,7 +54,7 @@ class SkillController extends Controller
                
         //upload picture for current post
         if( $request->hasFile('picture')){
-            $path = $request->file('picture')->store('posts_images');
+            $path = $request->file('picture')->store('skill_images');
             //Storage::putFile('name of the folder', $file) this other way by  using facade Storage 
             $image = new Image(['path' => $path]);
             $skill->image()->save($image);

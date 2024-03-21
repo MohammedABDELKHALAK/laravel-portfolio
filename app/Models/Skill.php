@@ -11,11 +11,16 @@ class Skill extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title']; 
+    protected $fillable = ['title', 'user_id']; 
 
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function projects()

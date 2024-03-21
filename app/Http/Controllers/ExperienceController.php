@@ -32,6 +32,7 @@ class ExperienceController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
+        
         // Check if the "Currently Working Here" checkbox was checked
     if ($request->has('end_job_checkbox')) {
         $data['end_job'] = now(); // Use Laravel's now() helper to get the current date

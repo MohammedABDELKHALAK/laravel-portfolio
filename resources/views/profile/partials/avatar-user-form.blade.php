@@ -8,7 +8,7 @@
                 {{-- this div fo avatar's image, if avatar has image will appear otherwise will show default image --}}
                 @foreach ($avatars as $avatar)
                     @if (auth()->check() && Auth::user()->id == $avatar->id)
-                        <img src="{{ $avatar->image ? Storage::url($avatar->image->path) : asset('../storage/profiles_images/avatar.png') }}"
+                        <img src="{{ $avatar->image ? Storage::url($avatar->image->path) : asset('fix_images/avatar.png') }}"
                             alt="User Avatar">
                     @endif
                 @endforeach

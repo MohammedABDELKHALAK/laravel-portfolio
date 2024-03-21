@@ -12,22 +12,22 @@
             <div class="form-group">
                 <div class="mt-2">
                     <label for="job_name"> Job Name: </label>
-                    <input class="form-control mt-2" name="job" id="job_name" type="text">
+                    <input class="form-control mt-2" name="job" id="job_name" type="text" required>
                 </div>
 
                 <div class="mt-2">
                     <label for="company"> Company: </label>
-                    <input class="form-control mt-2" name="company" id="company" type="text">
+                    <input class="form-control mt-2" name="company" id="company" type="text" required>
                 </div>
 
                 <div class="mt-2">
                     <label for="start_job"> Start Job: </label>
-                    <input class="form-control mt-2" name="start_job" id="start_job" type="date">
+                    <input class="form-control mt-2" name="start_job" id="start_job" type="date" required>
                 </div>
 
                 <div class="mt-2">
                     <label for="end_job"> End Job: </label>
-                    <input class="form-control mt-2" name="end_job" id="end_job" type="date">
+                    <input class="form-control mt-2" name="end_job" id="end_job" type="date" required>
                 </div>
 
                 <div class="mt-2">
@@ -40,17 +40,17 @@
 
                 <div class="mt-2">
                     <label for="country"> Country: </label>
-                    <input class="form-control mt-2" name="country" id="country" type="text">
+                    <input class="form-control mt-2" name="country" id="country" type="text" required>
                 </div>
 
                 <div class="mt-2">
                     <label for="city"> City: </label>
-                    <input class="form-control mt-2" name="city" id="city" type="text">
+                    <input class="form-control mt-2" name="city" id="city" type="text" required>
                 </div>
 
                 <div class="mt-2">
                     <label for="details"> Details: </label>
-                    <textarea name="details" id="details" cols="30" rows="10"></textarea>
+                    <textarea name="details" id="details" cols="30" rows="10" required></textarea>
                 </div>
 
                 {{-- <input class="form-control mt-2" name="userid" id="title" type="hidden" value="{{ Auth::user()->id }}"> --}}

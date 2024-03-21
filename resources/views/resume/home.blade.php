@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .aaep {
-           
+
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -34,7 +34,8 @@
                             <div class="text-uppercase">laravel developer</div>
                         </div>
                         <div class="fs-3 fw-light text-muted">Hi! I AM</div>
-                        <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">{{ $profile->name }}</span>
+                        <h1 class="display-3 fw-bolder mb-5"><span
+                                class="text-gradient d-inline">{!! $profile->name ?? '<span> Nothing </span>' !!}</span>
                         </h1>
                         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
                             <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder"
@@ -50,7 +51,8 @@
                     <div class="d-flex justify-content-center mt-5 mt-xxl-0">
                         <div class="profile bg-gradient-primary-to-secondary">
 
-                            <img class="profile-img" src="../storage/profiles_images/mohammed.png" alt="..." style="filter: drop-shadow(0 0 100px #121212)"/>
+                            <img class="profile-img" src="fix_images/mohammed.png" alt="..."
+                                style="filter: drop-shadow(0 0 100px #121212)" />
 
                         </div>
                     </div>
@@ -71,34 +73,48 @@
                     <div class="text-center my-5">
                         <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
                         <div>
-                            <p class="lead fw-light mb-4">My name is {{ $profile->name }} laravel developer.</p>
+                            <p class="lead fw-light mb-4">My name is {!! $profile->name ?? '<span> Nothing </span>' !!} laravel developer.</p>
                             <div class="aaep">
-                                <p><span>Age:</span> {{ \Carbon\Carbon::parse($profile->birth_day)->age }} years old</p>
-                                <p><span>Address:</span> {{ $profile->city .', '.  $profile->country }}</p>
-                                <p><span>Email:</span> {{ $profile->email }}</p>
-                                <p><span>Phone:</span> {{ $profile->phone_number }}</p>
+                                <p><span>Age:</span> {!! isset($profile->birth_day)
+                                    ? \Carbon\Carbon::parse($profile->birth_day)->age
+                                    : '<span class="fw-bold text-danger"> Nothing </span>' !!} years old</p>
+                                <p><span>Address:</span> {!! isset($profile->city) && isset($profile->country)
+                                    ? $profile->city . ', ' . $profile->country
+                                    : '<span class="fw-bold text-danger"> Nothing </span>' !!}</p>
+                                <p><span>Email:</span> {!! $profile->email ?? '<span class="fw-bold text-danger"> Nothing </span>' !!}</p>
+                                <p><span>Phone:</span> {!! $profile->phone_number ?? '<span class="fw-bold text-danger"> Nothing </span>' !!} </p>
                             </div>
                         </div>
 
                         <div>
-                            <p class="text-muted">{{ $profile->social->bio }}</p>
+                            @if ($profile && $profile->social)
+                                <p class="text-muted">{{ $profile->social->bio }}</p>
+                            @else
+                                <p class="fw-bold text-danger">NO Bio</p>
+                            @endif
                         </div>
 
                         <div class="d-flex justify-content-center fs-2 gap-4">
                             {{-- target="_blank" this attribute is for open the link in the new tab --}}
-                            @if ($profile->social)
+                            @if ($profile && $profile->social)
                                 <a class="text-gradient" href="{{ url($profile->social->linkedin) }}" target="_blank"><i
                                         class="bi bi-twitter"></i></a>
+                            @else
+                                <span class="fw-bold text-danger"> Nothing </span>
                             @endif
 
-                            @if ($profile->social && $profile->social->github)
+                            @if ($profile && $profile->social && $profile->social->github)
                                 <a class="text-gradient" href="{{ url($profile->social->github) }}" target="_blank"><i
                                         class="bi bi-linkedin"></i></a>
+                            @else
+                                <span class="fw-bold text-danger"> Nothing </span>
                             @endif
 
-                            @if ($profile->social && $profile->social->twitter)
+                            @if ($profile && $profile->social && $profile->social->twitter)
                                 <a class="text-gradient" href="{{ url($profile->social->twitter) }}" target="_blank"><i
                                         class="bi bi-github"></i></a>
+                            @else
+                                <span class="fw-bold text-danger"> Nothing </span>
                             @endif
                         </div>
 
