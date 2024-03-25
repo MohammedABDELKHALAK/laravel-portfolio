@@ -36,17 +36,25 @@ class AppServiceProvider extends ServiceProvider
 
         // i give this (Default profile to null) because when i used Route::currentRouteName(), i got error message "Undefined variable $profile"
         // so that why i used  View::share('profile', null) to share the default value for $profile to all view pages which i mention it below resume.*
-        View::share('profile', null);
 
-        if (Schema::hasTable('users') && in_array(Route::currentRouteName(), ['resume.home', 'resume.resume', 'resume.project'])) {
 
-            $profile = User::with(['social', 'experiences', 'skills'])->select('*')
-                ->first();
+        //************* i commented this because i used midlware method is best proctice **********//
+        //*****************************************************************************************//
 
-            View::composer('resume.*', function ($view) use ($profile) {
-                $view->with('profile', $profile);
-            });
-        }
+        // View::share('profile', null);
+
+        // if (Schema::hasTable('users') && in_array(Route::currentRouteName(), ['resume.home', 'resume.resume', 'resume.project'])) {
+
+        //     $profile = User::with(['social', 'experiences', 'skills'])->select('*')
+        //         ->first();
+
+        //     View::composer('resume.*', function ($view) use ($profile) {
+        //         $view->with('profile', $profile);
+        //     });
+        // }
+
+        //*************************************** *//
+        //*************************************** *//
 
         // Share the profile data with all views
         // view()->share('profile', $profile);

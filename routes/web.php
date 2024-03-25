@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ShowMessagesController;
 use App\Http\Controllers\SkillController;
+use App\Http\Middleware\ShareProfileData;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,9 +44,18 @@ Route::resource('experience', ExperienceController::class)->middleware(['auth', 
 
 // Route::resource('resume', ResumeController::class);
 
-Route::get('/home', [ResumeController::class, 'home'])->name('resume.home');
-Route::get('/resume', [ResumeController::class, 'resume'])->name('resume.resume');
-Route::get('/project', [ResumeController::class, 'project'])->name('resume.project');
+Route::get('/home', [ResumeController::class, 'home'])->name('resume.home')->middleware(ShareProfileData::class);
+Route::get('/resume', [ResumeController::class, 'resume'])->name('resume.resume')->middleware(ShareProfileData::class);
+Route::get('/project', [ResumeController::class, 'project'])->name('resume.project')->middleware(ShareProfileData::class);
+
+//this is other method but need in kernel to protected $routeMiddleware also
+// Route::middleware(['web', 'share.profile'])->group(function () {
+//     Route::get('/home', [ResumeController::class, 'home'])->name('resume.home');
+//     Route::get('/resume', [ResumeController::class, 'resume'])->name('resume.resume');
+//     Route::get('/project', [ResumeController::class, 'project'])->name('resume.project');
+// });
+
+
 Route::get('/dowloandPDF', [ResumeController::class, 'dowloandPDF'])->name('dowloandPDF');
 Route::get('/contact', [ResumeController::class, 'indexContact'])->name('resume.contact');
 Route::post('/contact', [ResumeController::class, 'sendEmail'])->name('send');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,6 +50,7 @@ class SkillController extends Controller
     public function store(Request $request)
     {
         $data = $request->only(['title']);
+        $data['user_id'] = Auth::id();
         $skill = Skill::create($data);
 
                

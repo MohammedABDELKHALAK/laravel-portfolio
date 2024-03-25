@@ -23,6 +23,12 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
+    // this if i want to use group method on routes
+    // protected $routeMiddleware = [
+        
+    //     'share.profile' => \App\Http\Middleware\ShareProfileData::class,
+    // ];
+
     /**
      * The application's route middleware groups.
      *
@@ -36,6 +42,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ShareProfileData::class,
         ],
 
         'api' => [

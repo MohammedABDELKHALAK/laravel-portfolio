@@ -26,8 +26,8 @@
                             <div class="card shadow border-0 rounded-4 mb-5">
                                 <div class="card-body p-5">
                                     <div class="row align-items-center gx-5">
-                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                            <div class="bg-light p-4 rounded-4">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0" >
+                                            <div class="p-4 rounded-4" style="background-color: rgba(134, 129, 129, 0.050)">
 
                                                 <div class="text-primary fw-bolder mb-2">
                                                     {{ $experience->is_currently_working
@@ -69,14 +69,14 @@
 
                 <!-- Education Section-->
                 <section>
-                    <h2 class="text-secondary fw-bolder mb-4">Education</h2>
+                    <h2 class="fw-bolder mb-4" style="color: rgb(244, 27, 110)">Education</h2>
                     <!-- Education Card 1-->
                     <div class="card shadow border-0 rounded-4 mb-5">
                         <div class="card-body p-5">
                             <div class="row align-items-center gx-5">
                                 <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                    <div class="bg-light p-4 rounded-4">
-                                        <div class="text-secondary fw-bolder mb-2">2015 - 2017</div>
+                                    <div class="p-4 rounded-4" style="background-color: rgba(134, 129, 129, 0.050)">
+                                        <div class="fw-bolder mb-2" style="color: rgb(244, 27, 110)">2015 - 2017</div>
                                         <div class="mb-2">
                                             <div class="small fw-bolder">Barnett College</div>
                                             <div class="small text-muted">Fairfield, NY</div>
@@ -105,44 +105,7 @@
                     <div class="card shadow border-0 rounded-4 mb-5">
                         <div class="card-body p-5">
                             <!-- Professional skills list-->
-                            {{-- <div class="mb-5">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div
-                                        class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3">
-                                        <i class="bi bi-tools"></i>
-                                    </div>
-                                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Professional
-                                            Skills</span></h3>
-                                </div>
-                                <div class="row row-cols-1 row-cols-md-3 mb-4">
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">SEO/SEM
-                                            Marketing</div>
-                                    </div>
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Statistical
-                                            Analysis</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Web Development
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row row-cols-1 row-cols-md-3">
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Network Security
-                                        </div>
-                                    </div>
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Adobe Software
-                                            Suite</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">User Interface
-                                            Design</div>
-                                    </div>
-                                </div>
-                            </div> --}}
+
                             <!-- Languages list-->
                             <div class="mb-0">
                                 <div class="d-flex align-items-center mb-4">
@@ -152,35 +115,41 @@
                                     </div>
                                     <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Skills</span></h3>
                                 </div>
+
                                 <dv class="row row-cols-1 row-cols-md-3 mb-4">
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">
-                                            {!! $profile->skills->title ?? '<span class="fw-bold text-danger"> Nothing </span>' !!}
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">CSS</div>
-                                    </div>
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">JavaScript</div>
-                                    </div> --}}
+
+                                    @if ($profile && $profile->skills)
+                                        @foreach ($profile->skills as $skill)
+                                            <div class="col mb-4 mb-md-0 mt-3 d-flex align-items-center justify-content-start ">
+
+                                                <div class="rounded-4 p-2 w-100" style="background-color: rgba(134, 129, 129, 0.050)">
+
+                                                    <img class="rounded-circle"
+                                                        src="{{ Storage::url($skill->image->path) }}" width="30px"
+                                                        height="30px" alt="{{ $skill->title }}">
+
+                                                        <span class="px-2">{{ strtoupper($skill->title) }}</span>
+                                                    {{-- <span class="">{{ ucwords($skill->title) }}</span> --}}
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <span class="fw-bold text-danger">Nothing</span>
+                                    @endif
+
+
+
+                                </div>
+
+
                             </div>
-                            {{-- <div class="row row-cols-1 row-cols-md-3">
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Python</div>
-                                    </div>
-                                    <div class="col mb-4 mb-md-0">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Ruby</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Node.js</div>
-                                    </div>
-                                </div> --}}
+
                         </div>
                     </div>
+
+                </section>
+
             </div>
-            </section>
         </div>
-    </div>
     </div>
 @endsection
