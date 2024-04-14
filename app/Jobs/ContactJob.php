@@ -16,6 +16,9 @@ class ContactJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected $data;
 
+    // Specify the number of times the job should be attempted
+    public $tries = 3;
+
     /**
      * Create a new job instance.
      */
@@ -30,6 +33,17 @@ class ContactJob implements ShouldQueue
     public function handle(): void
     {
         $mailable = new ContactMail($this->data);
-        Mail::to('reciever-exemple@gmail.com')->send($mailable);
+        Mail::to('mohammed.abdelkhalak1995@gmail.com')->send($mailable);
+    }
+
+    public function delay()
+    {
+//  i'm already used delay in sendmail method in contactController
+
+        // Set a delay of 10 minutes (600 seconds)
+        // return now()->addMinutes(1);
+
+        // Set a delay of 10 seconds
+        // return now()->addSeconds(20);
     }
 }

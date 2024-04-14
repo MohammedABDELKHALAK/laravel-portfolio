@@ -2,25 +2,25 @@
 
 @section('content')
 
-<style>
-    /* this style for message td in table to show just a part of messages with three points (...) */
-    .message-cell {
-        max-width: 200px;
-        /* Set the maximum width for the cell */
-        white-space: nowrap;
-        /* Prevent text from wrapping */
-        overflow: hidden;
-        /* Hide the overflowing text */
-        text-overflow: ellipsis;
-        /* Display ellipsis (...) for overflow */
-    }
-</style>
+    <style>
+        /* this style for message td in table to show just a part of messages with three points (...) */
+        .message-cell {
+            max-width: 200px;
+            /* Set the maximum width for the cell */
+            white-space: nowrap;
+            /* Prevent text from wrapping */
+            overflow: hidden;
+            /* Hide the overflowing text */
+            text-overflow: ellipsis;
+            /* Display ellipsis (...) for overflow */
+        }
+    </style>
 
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="height: 50px; display: flex; align-items: center; justify-content: start;">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin-left: 10px;">
                     {{ __('Dashboard') }}
                 </h2>
             </div>
@@ -30,8 +30,41 @@
                 @endif --}}
 
             @can('dashboard')
-                <a class="btn btn-outline-info my-3" href="{{ route('resume.home') }}"> my personal page</a>
+                <a class="btn btn-outline-info my-3" href="{{ route('resume.home') }}" target="_blank"> my personal page</a>
             @endcan
+
+            <!-- Pagination Dropdown -->
+            <form method="get" action="{{ route('pagination-perpage') }}" class="mt-3" style="width: 100px; float:right;">
+                <select name="perPage" id="perPage" class="form-select" onchange="this.form.submit()" >
+                    <option value="{{ $messages->total() }}" {{ $messages->perPage() == $messages->total() ? 'selected' : '' }}> All</option>
+                    <option value="10" {{ $messages->perPage() == 10 ? 'selected' : '' }}>10</option>
+                    <option value="20" {{ $messages->perPage() == 20 ? 'selected' : '' }}>20</option>
+                    <option value="30" {{ $messages->perPage() == 30 ? 'selected' : '' }}>30</option>
+                    
+                </select>
+
+                {{-- <select name="perPage" id="perPage" class="form-select" onchange="this.form.submit()">
+                    @php
+                        $perPageOptions = [10]; // Initial options
+                        $perPage = $messages->perPage(); // Number of items per page
+
+                        // If the number of messages exceeds the last option, add new options
+                        while ($messages->total() > end($perPageOptions)) {
+                            $lastOption = end($perPageOptions);
+                            $perPageOptions[] = $lastOption + 10; // Increment by 10
+                        }
+                    @endphp
+                    <option value="{{ $messages->total() }}" {{ $messages->perPage() == $messages->total() ? 'selected' : '' }}>
+                        All
+                    </option>
+                    @foreach ($perPageOptions as $option)
+                        <option value="{{ $option }}" {{ $option == $perPage ? 'selected' : '' }}>
+                            {{ $option }}
+                        </option>
+                    @endforeach
+                </select> --}}
+
+            </form>
 
             <table class="table   table-striped text-white my-2">
 
@@ -43,6 +76,7 @@
                 @if ($messages->count())
                     @foreach ($messages as $message)
                         <tr>
+                            {{-- @dd($message) --}}
                             <td>{{ $message->name }}</td>
                             <td>
                                 {{ $message->email }}
@@ -53,11 +87,8 @@
                                 </a>
                             </td>
                             {{-- <td>
-                                <a href=" {{ route('skills.edit', ['skill' => $skill->id]) }}"><span
-                                        class="badge text-bg-warning">Edit</span></a>
-
-                                <form class="delete inline" method="POST"
-                                    action="{{ route('skills.destroy', ['skill' => $skill->id]) }}">
+                                
+                                <form class="delete inline" method="POST" action="{{ route('skills.destroy', ['skill' => $skill->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     {{-- <button class="btn btn-danger" type="submit">Delete</button> --}}
@@ -66,7 +97,6 @@
                                             class="badge text-bg-danger">Delete</span></a>
 
                                 </form>
-
 
                             </td> --}}
 
@@ -80,6 +110,11 @@
                 @endif
 
             </table>
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center">
+                {{ $messages->links() }}
+            </div>
 
         </div>
-    @endsection
+    </div>
+@endsection

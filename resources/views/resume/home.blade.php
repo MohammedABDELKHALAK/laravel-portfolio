@@ -76,8 +76,8 @@
                             <p class="lead fw-light mb-4">My name is {!! $profile->name ?? '<span> Nothing </span>' !!} laravel developer.</p>
                             <div class="aaep">
                                 <p><span>Age:</span> {!! isset($profile->birth_day)
-                                    ? \Carbon\Carbon::parse($profile->birth_day)->age
-                                    : '<span class="fw-bold text-danger"> Nothing </span>' !!} years old</p>
+                                    ? \Carbon\Carbon::parse($profile->birth_day)->age .'years old'
+                                    : '<span class="fw-bold text-danger"> Nothing </span>' !!} </p>
                                 <p><span>Address:</span> {!! isset($profile->city) && isset($profile->country)
                                     ? $profile->city . ', ' . $profile->country
                                     : '<span class="fw-bold text-danger"> Nothing </span>' !!}</p>

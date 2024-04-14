@@ -42,46 +42,46 @@
             <div id="experiences-table" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="height: 50px; display: flex; align-items: center; justify-content: start;">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin-left: 10px;">
-                        {{ __('Experiences') }}
+                        {{ __('Educations') }}
                     </h2>
                 </div>
 
-                <a class="btn btn-primary my-3" href=" {{ route('experience.create') }} ">Create Experiences</a>
+                <a class="btn btn-primary my-3" href=" {{ route('education.create') }} ">Create Education</a>
 
                 <table class="table   table-striped text-white my-2">
 
                     <tr>
-                        <th>Job Name</th>
-                        <th>Company</th>
-                        <th>Start Job</th>
-                        <th>End Job</th>
+                        <th>School Name</th>
+                        <th>Level</th>
+                        <th>Start Education</th>
+                        <th>End Education</th>
                         <th>Country & City</th>
                         <th>Details</th>
                         <th>Years</th>
                         <th>Event</th>
                     </tr>
-                    @if ($experiences->count())
-                        @foreach ($experiences as $experience)
+                    @if ($educations->count())
+                        @foreach ($educations as $education)
                             <tr>
-                                <td>{{ $experience->job }}</td>
-                                <td>{{ $experience->company }}</td>
-                                <td>{{ $experience->start_job }}</td>
+                                <td>{{ $education->name }}</td>
+                                <td>{{ $education->level }}</td>
+                                <td>{{ $education->start_educate }}</td>
                                 {{--   i choose this way to learn other ways so {!! ... !!} this to show html
                                        with retrevieving data in same time
                                        but you need to use e(Variable) --}}
-                                <td>{!! $experience->is_currently_working ? '<span>Currently Working</span>' : e($experience->end_job) !!}</td>
+                                <td>{!! $education->is_currently_educate ? '<span>Currently Educate</span>' : e($education->end_educate) !!}</td>
 
-                                <td>{{ $experience->country . ', ' . $experience->city }}</td>
-                                <td class="details-cell">{{ $experience->details }}</td>
+                                <td>{{ $education->country . ', ' . $education->city }}</td>
+                                <td class="details-cell">{{ $education->details }}</td>
                                 <td class="details-cell">
                                     @php
 
-                                        $start_job = Carbon\Carbon::parse($experience->start_job);
-                                        $end_job = $experience->is_currently_working
+                                        $start_educate = Carbon\Carbon::parse($education->start_educate);
+                                        $end_educate = $education->is_currently_educate
                                             ? now()
-                                            : Carbon\Carbon::parse($experience->end_job);
+                                            : Carbon\Carbon::parse($education->end_educate);
 
-                                        $duration = $start_job->diffForHumans($end_job, true, true);
+                                        $duration = $start_educate->diffForHumans($end_educate, true, true);
 
                                     @endphp
                                     {{ $duration }}
@@ -109,7 +109,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td class="fw-bold" colspan="8">There is no experience</td>
+                            <td class="fw-bold" colspan="8">There is no Education</td>
 
                         </tr>
                     @endif

@@ -26,7 +26,7 @@
                             <div class="card shadow border-0 rounded-4 mb-5">
                                 <div class="card-body p-5">
                                     <div class="row align-items-center gx-5">
-                                        <div class="col text-center text-lg-start mb-4 mb-lg-0" >
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
                                             <div class="p-4 rounded-4" style="background-color: rgba(134, 129, 129, 0.050)">
 
                                                 <div class="text-primary fw-bolder mb-2">
@@ -71,31 +71,52 @@
                 <section>
                     <h2 class="fw-bolder mb-4" style="color: rgb(244, 27, 110)">Education</h2>
                     <!-- Education Card 1-->
-                    <div class="card shadow border-0 rounded-4 mb-5">
-                        <div class="card-body p-5">
-                            <div class="row align-items-center gx-5">
-                                <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                    <div class="p-4 rounded-4" style="background-color: rgba(134, 129, 129, 0.050)">
-                                        <div class="fw-bolder mb-2" style="color: rgb(244, 27, 110)">2015 - 2017</div>
-                                        <div class="mb-2">
-                                            <div class="small fw-bolder">Barnett College</div>
-                                            <div class="small text-muted">Fairfield, NY</div>
+                    @if ($profile && $profile->education)
+                        @forelse ($profile->education as $education)
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="p-4 rounded-4" style="background-color: rgba(134, 129, 129, 0.050)">
+
+                                                <div class="fw-bolder mb-2" style="color: rgb(244, 27, 110)">
+                                                    {{ $education->is_currently_educate
+                                                        ? \Carbon\Carbon::parse($education->start_educate)->format('Y-m') . ' - ' . 'Present'
+                                                        : \Carbon\Carbon::parse($education->start_educate)->format('Y-m') .
+                                                            ' - ' .
+                                                            \Carbon\Carbon::parse($education->end_educate)->format('Y-m') }}
+                                                </div>
+
+                                                <div class="mb-2">
+                                                    <div class="small fw-bolder">{{ $education->name}}</div>
+                                                    <div class="small text-muted">{{ $education->country .', '. $education->city }}Fairfield, NY</div>
+                                                </div>
+                                                <div class="fst-italic">
+                                                    <div class="small text-muted">{{ $education->level}}</div>
+                                                    {{-- <div class="small text-muted">Web Development</div> --}}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="fst-italic">
-                                            <div class="small text-muted">Master's</div>
-                                            <div class="small text-muted">Web Development</div>
+                                        <div class="col-lg-8">
+                                            <div>{{ $education->details }}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8">
-                                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium,
-                                        voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed
-                                        aliquam non voluptate corrupti excepturi maxime porro fuga.</div>
+                            </div>
+                        @empty
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <span class="fw-bold text-danger">No prior Education have yet</span>
                                 </div>
                             </div>
+                        @endforelse
+                    @else
+                        <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card-body p-5">
+                                <span class="fw-bold text-danger">No Education Available Yet</span>
+                            </div>
                         </div>
-                    </div>
-
+                    @endif
                 </section>
                 <!-- Divider-->
                 <div class="pb-5"></div>
@@ -120,15 +141,17 @@
 
                                     @if ($profile && $profile->skills)
                                         @foreach ($profile->skills as $skill)
-                                            <div class="col mb-4 mb-md-0 mt-3 d-flex align-items-center justify-content-start ">
+                                            <div
+                                                class="col mb-4 mb-md-0 mt-3 d-flex align-items-center justify-content-start ">
 
-                                                <div class="rounded-4 p-2 w-100" style="background-color: rgba(134, 129, 129, 0.050)">
+                                                <div class="rounded-4 p-2 w-100"
+                                                    style="background-color: rgba(134, 129, 129, 0.050)">
 
                                                     <img class="rounded-circle"
                                                         src="{{ Storage::url($skill->image->path) }}" width="30px"
                                                         height="30px" alt="{{ $skill->title }}">
 
-                                                        <span class="px-2">{{ strtoupper($skill->title) }}</span>
+                                                    <span class="px-2">{{ strtoupper($skill->title) }}</span>
                                                     {{-- <span class="">{{ ucwords($skill->title) }}</span> --}}
                                                 </div>
                                             </div>
@@ -139,17 +162,17 @@
 
 
 
-                                </div>
-
-
                             </div>
 
+
                         </div>
+
                     </div>
-
-                </section>
-
             </div>
+
+            </section>
+
         </div>
+    </div>
     </div>
 @endsection

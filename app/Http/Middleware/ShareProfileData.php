@@ -19,7 +19,7 @@ class ShareProfileData
     public function handle(Request $request, Closure $next): Response
     {
         if (Schema::hasTable('users')) {
-            $profile = User::with(['social', 'experiences', 'skills'])->first();
+            $profile = User::with(['social', 'experiences', 'skills', 'education'])->first();
             View::share('profile', $profile);
         }
         

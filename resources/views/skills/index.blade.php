@@ -28,8 +28,8 @@ float: right;
             @endif
 
             <div id="skills-table" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="height: 50px; display: flex; align-items: center; justify-content: start;">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin-left: 10px;">
                         {{ __('Skills') }}
                     </h2>
                 </div>

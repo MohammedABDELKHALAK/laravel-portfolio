@@ -27,7 +27,10 @@ class ContactController extends Controller
         Message::create($data);
 
         $job = new ContactJob($data);
-        dispatch($job);
+        // dispatch($job)->onQueue('default');
+
+         // Dispatch the job to the queue with a delay of 10 seconds
+         dispatch($job)->onQueue('default')->delay(now()->addMinutes(1));
 
         // i comnted this struture because i'm used ContactJob this other method to use queue laravel features
         // Mail::to('reciever-exemple@gmail.com')->send(new ContactMail($data));

@@ -31,7 +31,7 @@ class ContactMail extends Mailable
     {
         return new Envelope(
             subject: 'Contact Mail',
-            from: new Address('destinator-exemple@gmail.com', 'porfolio'),
+            from: new Address('example@example.com', 'porfolio'),
         );
     }
 

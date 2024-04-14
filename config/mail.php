@@ -44,6 +44,9 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+       // i add those to variable because i'm using gmail reciever
+            'auth_mode' => null,
+            'verify_peer'=> false,
         ],
 
         'ses' => [
