@@ -37,12 +37,13 @@ Route::get('/dashboard', [ShowMessagesController::class, 'index'] )->middleware(
 Route::get('/show/{id}', [ShowMessagesController::class, 'show'] )->middleware(['auth', 'verified'])->name('show.message');
 Route::get('/pagination', [ShowMessagesController::class, 'updatePagination'] )->middleware(['auth', 'verified'])->name('pagination-perpage');
 
-
 // Route::get('/messages', [ShowMessagesController::class, 'index']);
 
 Route::resource('skills', SkillController::class)->middleware(['auth', 'verified']);
+Route::get('skillspdf', [SkillController::class, 'exportPDF'])->name('skills.exportpdf')->middleware(['auth', 'verified']);
 Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
 Route::resource('experience', ExperienceController::class)->middleware(['auth', 'verified']);
+Route::get('experienceExel', [ExperienceController::class, 'exportExcel'])->name('experiences.exportExcel')->middleware(['auth', 'verified']);
 Route::resource('education', EducationController::class)->middleware(['auth', 'verified']);
 
 // Route::resource('resume', ResumeController::class);

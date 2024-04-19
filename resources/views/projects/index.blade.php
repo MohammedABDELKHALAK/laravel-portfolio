@@ -20,7 +20,7 @@
                 {{-- to create --}}
                 {{-- <button class="btn btn-primary" type="submit"><a href="{{ route('projects.create') }}">Add Projects</a></button> --}}
                 <a class="btn btn-info my-3" href="{{ route('projects.create') }}">Create Projects</a>
-
+                
                 {{-- to edit --}}
 
                 <table class="table   table-striped text-black">

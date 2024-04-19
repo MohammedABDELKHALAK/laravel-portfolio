@@ -48,9 +48,10 @@
                     <input class="form-control mt-2" name="city" id="city" type="text" required>
                 </div>
 
-                <div class="mt-2">
-                    <label for="details"> Details: </label>
-                    <textarea name="details" id="details" cols="30" rows="10" required></textarea>
+                <div class="form-group mt-2">
+                    <label for="details"> Description: </label> <br>
+                    <textarea class="mt-2" name="details" id="details"
+                     cols="100" rows="5" placeholder="Description..."></textarea>
                 </div>
 
                 {{-- <input class="form-control mt-2" name="userid" id="title" type="hidden" value="{{ Auth::user()->id }}"> --}}

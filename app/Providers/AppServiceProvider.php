@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         // so that why i used  View::share('profile', null) to share the default value for $profile to all view pages which i mention it below resume.*
 
 
-        //************* i commented this because i used midlware method is best proctice **********//
+        //************* i commented this because i used midlware method is best practice **********//
         //*****************************************************************************************//
 
         // View::share('profile', null);

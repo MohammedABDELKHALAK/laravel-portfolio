@@ -91,7 +91,7 @@
                         <!-- to show all errors messages in one div using alert,
                                         it work for laravel with refreshing the page -->
 
-                        @if ($errors->any())
+                        {{-- @if ($errors->any())
                             <div id="alertErrors" class="alert alert-danger my-3">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -99,7 +99,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                        @endif --}}
 
                     </div>
                 </div>

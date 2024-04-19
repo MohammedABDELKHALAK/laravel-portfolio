@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+// \Lomkit\Rest\Facades\Rest::resource('users', \App\Rest\Controllers\UsersController::class);
+/*===========================
+=           users           =
+=============================*/
+
+Route::apiResource('/users', \App\Http\Controllers\API\UserController::class);
+
+/*=====  End of users   ======*/
+
+/*===========================
+=           skills           =
+=============================*/
+
+Route::apiResource('/skills', \App\Http\Controllers\API\SkillController::class);
+
+/*=====  End of skills   ======*/

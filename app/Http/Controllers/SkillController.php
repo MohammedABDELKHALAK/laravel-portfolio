@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Skill;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -134,5 +135,12 @@ class SkillController extends Controller
         Session::flash('danger', 'the skill was deleted!');
 
         return redirect()->back();
+    }
+
+    public function exportPDF(Request $request){
+        $skills = Skill::all();
+        $pdf = Pdf::loadView('exports.pdf.skillspdf', ['skills' => $skills]);
+
+        return $pdf->download('skillsPDF.pdf');
     }
 }

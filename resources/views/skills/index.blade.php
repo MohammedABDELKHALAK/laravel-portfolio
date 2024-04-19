@@ -35,6 +35,7 @@ float: right;
                 </div>
 
                 <a class="btn btn-primary my-3" href=" {{ route('skills.create') }} ">Create Skills</a>
+                <a class="btn btn-warning my-3 mx-2" href=" {{ route('skills.exportpdf') }} ">Export PDF Skills</a>
 
                 <table class="table   table-striped text-white my-2">
 

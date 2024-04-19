@@ -97,21 +97,21 @@
                         <div class="d-flex justify-content-center fs-2 gap-4">
                             {{-- target="_blank" this attribute is for open the link in the new tab --}}
                             @if ($profile && $profile->social)
-                                <a class="text-gradient" href="{{ url($profile->social->linkedin) }}" target="_blank"><i
+                                <a class="text-gradient" href="{{ url($profile->social->twitter) }}" target="_blank"><i
                                         class="bi bi-twitter"></i></a>
                             @else
                                 <span class="fw-bold text-danger"> Nothing </span>
                             @endif
 
                             @if ($profile && $profile->social && $profile->social->github)
-                                <a class="text-gradient" href="{{ url($profile->social->github) }}" target="_blank"><i
+                                <a class="text-gradient" href="{{ url($profile->social->linkedin) }}" target="_blank"><i
                                         class="bi bi-linkedin"></i></a>
                             @else
                                 <span class="fw-bold text-danger"> Nothing </span>
                             @endif
 
                             @if ($profile && $profile->social && $profile->social->twitter)
-                                <a class="text-gradient" href="{{ url($profile->social->twitter) }}" target="_blank"><i
+                                <a class="text-gradient" href="{{ url($profile->social->github) }}" target="_blank"><i
                                         class="bi bi-github"></i></a>
                             @else
                                 <span class="fw-bold text-danger"> Nothing </span>

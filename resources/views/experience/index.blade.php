@@ -47,6 +47,7 @@
                 </div>
 
                 <a class="btn btn-primary my-3" href=" {{ route('experience.create') }} ">Create Experiences</a>
+                <a class="btn btn-warning my-3 mx-2 " href=" {{ route('experiences.exportExcel') }} ">Export Excel experiences</a>
 
                 <table class="table   table-striped text-white my-2">
 

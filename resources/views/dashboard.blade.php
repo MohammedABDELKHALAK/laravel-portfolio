@@ -34,7 +34,7 @@
             @endcan
 
             <!-- Pagination Dropdown -->
-            <form method="get" action="{{ route('pagination-perpage') }}" class="mt-3" style="width: 100px; float:right;">
+            <form id="perPageForm" method="get" action="{{ route('pagination-perpage') }}" class="mt-3" style="width: 100px; float:right;">
                 <select name="perPage" id="perPage" class="form-select" onchange="this.form.submit()" >
                     <option value="{{ $messages->total() }}" {{ $messages->perPage() == $messages->total() ? 'selected' : '' }}> All</option>
                     <option value="10" {{ $messages->perPage() == 10 ? 'selected' : '' }}>10</option>
@@ -110,6 +110,7 @@
                 @endif
 
             </table>
+           
             <!-- Pagination Links -->
             <div class="d-flex justify-content-center">
                 {{ $messages->links() }}
@@ -117,4 +118,6 @@
 
         </div>
     </div>
+
+    
 @endsection

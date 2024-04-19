@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExperienceExport;
 use App\Models\Experience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
 
 class ExperienceController extends Controller
 {
@@ -74,4 +78,14 @@ class ExperienceController extends Controller
     {
         //
     }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExperienceExport, 'experiencesExcel.xlsx');
+    }
+
+    
+
+
+
 }

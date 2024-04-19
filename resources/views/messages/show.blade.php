@@ -4,9 +4,8 @@
 
 <div class="container">
 <p>
-    {{$message->message}}
+    {{$message->message }}
 </p>
-
 
 </div>
 
