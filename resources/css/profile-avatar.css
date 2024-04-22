@@ -1,47 +1,45 @@
 
 /* this style for picture's user card div */
 .card {
-
+    /* background-color:blue; */
     display: flex;
-
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    width: 700px;
-    padding: 10px 0 10px 0;
+    align-items: center; 
+    justify-content: space-between; 
+    /* flex-direction: row;
+    flex-flow: column wrap; */
+    /* flex-wrap:wrap; */
+    max-width: 900px; /* Use max-width for responsiveness */
+    width: 100%; /* Make width responsive */
+    padding: 30px 0 30px 30px;
     box-shadow: 2px 5px 38px rgba(0, 0, 0, 0.28);
     border: 0;
-}
-
-.img-trash {
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: 2px 5px 38px rgba(0, 0, 0, 0.28);
-
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+    margin: auto; /* Center the card on the page */
 
 }
 
 .img {
+    /* background-color: rgb(41, 10, 198); */
     position: relative;
     display: flex;
+    align-self:flex-start;
     align-items: center;
     justify-content: center;
     width: 150px;
     height: 150px;
+    border-radius: 50%;
     background-color: 2px 5px 38px rgba(0, 0, 0, 0.28);
+   
+}
+
+.img img {
+
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
     border-radius: 50%;
 }
 
-.trash-icon {
+.img .trash-icon {
 
     position: absolute;
     display: flex;
@@ -59,16 +57,30 @@
 
 }
 
+.btn-img {
+    /* background-color:blueviolet ; */
+    /* flex: 1; Allow it to grow */
+    display: flex;
+    align-self:flex-end;
+    /* align-items:center */
+    margin-top: -140px;
+    margin-right: 15px;
+    /* padding: 20px; */
+    /* width: 500px;
+    display: flex;
+    align-content:center; */
+
+}
+
 .trash-icon button {
 
     border-radius: 100%;
     width: 40px;
     height: 40px;
-    text-align: center;
+    /* text-align: center; */
     font-size: 0.9rem;
     color: crimson;
     background-color: rgb(255, 255, 255);
-
 
 }
 
@@ -78,17 +90,41 @@
 
 }
 
-.btn-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Responsive adjustments */
+@media (max-width: 768px) {
 
+    .btn-img {
+        width: 100%; /* Take full width */
+        margin-top: 20px; /* Adjust top margin */
+    }
+
+    .img {
+        align-self: center;
+        width: 120px;
+        height: 120px;
+    }
+
+    .img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .img .trash-icon {
+        width: 30px;
+        height: 30px;
+    
+    }
+
+    .trash-icon button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+    
+    }
+    
 }
 
 
-.img img {
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
-    border-radius: 50%;
-}
+

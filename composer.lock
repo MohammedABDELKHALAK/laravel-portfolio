@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7f225967da6c07d548283d8214a1652",
+    "content-hash": "69e20a46d11e9cdc1d61c0247ad1083e",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -3361,6 +3361,62 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "pcinaglia/laraupdater",
+            "version": "1.0.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pietrocinaglia/laraupdater.git",
+                "reference": "ad268f0d88d108fe6d2282008cbcddc5d84dd966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pietrocinaglia/laraupdater/zipball/ad268f0d88d108fe6d2282008cbcddc5d84dd966",
+                "reference": "ad268f0d88d108fe6d2282008cbcddc5d84dd966",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "pcinaglia\\laraupdater\\LaraUpdaterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "pcinaglia\\laraupdater\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pietro Cinaglia",
+                    "homepage": "https://github.com/pietrocinaglia",
+                    "role": "Software Engineer."
+                }
+            ],
+            "description": "LaraUpdater allows your Laravel application to auto-update itself.",
+            "homepage": "https://github.com/pietrocinaglia/laraupdater",
+            "keywords": [
+                "backup-restore",
+                "laravel",
+                "self-updater",
+                "update-checker",
+                "update-installer"
+            ],
+            "support": {
+                "issues": "https://github.com/pietrocinaglia/laraupdater/issues",
+                "source": "https://github.com/pietrocinaglia/laraupdater/tree/1.0.3.4"
+            },
+            "time": "2023-02-04T13:18:32+00:00"
         },
         {
             "name": "phenx/php-font-lib",

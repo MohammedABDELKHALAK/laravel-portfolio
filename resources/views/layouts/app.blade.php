@@ -37,6 +37,7 @@
                 </div>
             
             </main>
+            @include('vendor.laraupdater.notification')
         </div>
     </body>
 </html>
