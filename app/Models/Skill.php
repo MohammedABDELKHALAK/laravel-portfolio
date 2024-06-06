@@ -26,8 +26,8 @@ class Skill extends Model
 
     public function projects()
 {
-    // 'project_skills' this pivote tabl, pivot table mean a table has foriegn ke of skills and projects 
-    // then incontroller we use attach to create and sync to update
+    // 'project_skills' this pivote tabl, pivot table mean a table has foriegn keys of skills and projects 
+    // then in controller we use attach to create and sync to update
     return $this->belongsToMany(Project::class, 'project_skills');
 }
 

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Essa\APIToolKit\Exceptions\Handler as APIHandler;
+use Exception;
 use Throwable;
 
 class Handler extends APIHandler
@@ -27,4 +28,5 @@ class Handler extends APIHandler
             //
         });
     }
+
 }

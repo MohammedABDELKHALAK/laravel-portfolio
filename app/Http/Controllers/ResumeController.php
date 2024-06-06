@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Jobs\ContactJob;
 use App\Models\Message;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,9 @@ class ResumeController extends Controller
 
     public function project()
     {
-        return view('resume.project');
+        return view('resume.project',
+        ['projects' => Project::with(['skills', 'image'])->get()]
+    );
     }
 
     public function dowloandPDF()
@@ -71,7 +74,8 @@ class ResumeController extends Controller
         Message::create($data);
 
         $job = new ContactJob($data);
-        dispatch($job);
+        // Dispatch the job to the queue with a delay of 1 minute
+        dispatch($job)->onQueue('default')->delay(now()->addMinutes(1));
 
         // i comnted this struture because i'm used ContactJob this other method to use queue laravel features
         // Mail::to('reciever-exemple@gmail.com')->send(new ContactMail($data));

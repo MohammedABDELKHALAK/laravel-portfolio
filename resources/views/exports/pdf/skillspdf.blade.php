@@ -1,12 +1,24 @@
 
-<table>
-    <tbody>
-        @foreach ($skills as $skill)
+    <table class="table table-striped text-white my-2">
         <tr>
-            <th scope="row"> {{ $skill->id }}</th>
-    
+            <th>Skills </th>
         </tr>
-        <td>{{ $skill->title }}</td>
+
+        @foreach ($skills as $skill)
+            <tr>
+                <td>{{ $skill->title }}</td>
+            </tr>
         @endforeach
-    </tbody>
-</table>
+
+    </table>
+
+    <style>
+        th{
+            background-color: bisque;
+        }
+
+        td{
+            background-color:aquamarine
+        }
+
+    </style>

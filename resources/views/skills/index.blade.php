@@ -82,7 +82,10 @@ float: right;
                     @endif
 
                 </table>
-
+ <!-- Pagination Links -->
+ <div class="d-flex justify-content-center">
+    {{ $skills->links() }}
+</div>
             </div>
 
         </div>

@@ -5,7 +5,14 @@
         #projects-table a {
             float: right;
         }
+
+            /* this style for message td in table to show just a part of messages with three points (...) */
+    .description-cell {
+        max-width: 600px;
+        
+    }
     </style>
+
     <div class="py-12">
 
         <div id="projects-table" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -23,7 +30,7 @@
                 
                 {{-- to edit --}}
 
-                <table class="table   table-striped text-black">
+                <table class="table table-bordered table-striped text-black ">
 
                     <tr>
                         <th>Name</th>
@@ -38,27 +45,28 @@
                     @if ($projects->count())
                         @foreach ($projects as $project)
                             <tr>
-                                <td>{{ $project->title }}</td>
+                                <td >{{ $project->title }}</td>
 
                                 {{-- this td retrieve all skills are using for each project
                                 to achieve that i'm using pivote table named project_skill --}}
 
                                 {{-- if there is a other column in the pivot table project_skill all you need to do for example 
                                 $project->pivot->the_column_on_the pivot_table --}}
-                                <td>
-
+                               
+                                <td class=" d-flex flex-wrap ">
                                     @foreach ($project->skills as $skill)
-                                        <div>
+                                   
+                                        <div class=" d-flex flex-column align-items-center p-2 ">
                                             <img src="{{ Storage::url($skill->image->path) }}" width="20px" height="20px"
                                                 alt="{{ $skill->title }}">
 
                                             <span style="font-size: 0.7em">{{ $skill->title }}</span>
                                         </div>
-                                    @endforeach
+                                        @endforeach
                                 </td>
-
+                               
                                 <td>
-                                    {{ $project->url }}
+                                    <a href="{{ $project->url }}">{{ $project->url }}</a>
                                 </td>
 
                                 <td>
@@ -70,8 +78,10 @@
                                     @endif
 
                                 </td>
-                                <td>
+
+                                <td class="description-cell " id="descriptionCell">
                                     {{ $project->description }}
+                                    
                                 </td>
 
                                 <td>
@@ -107,4 +117,5 @@
             </div>
         </div>
     </div>
+
 @endsection

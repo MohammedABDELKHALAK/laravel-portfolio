@@ -2,6 +2,12 @@
 
 @section('content')
 
+    {{-- @php
+use App\Models\Message;
+ $hasTrashedMessages = Message::onlyTrashed()->exists();
+dd($hasTrashedMessages);
+@endphp --}}
+
     <style>
         /* this style for message td in table to show just a part of messages with three points (...) */
         .message-cell {
@@ -18,8 +24,21 @@
 
     <div class="py-12">
 
+        @if (session('status') && session('message'))
+            @if (session('status') == 'success')
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @elseif(session('status') == 'warning')
+                <div class="alert alert-warning">
+                    {{ session('message') }}
+                </div>
+            @endif
+        @endif
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="height: 50px; display: flex; align-items: center; justify-content: start;">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg"
+                style="height: 50px; display: flex; align-items: center; justify-content: start;">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin-left: 10px;">
                     {{ __('Dashboard') }}
                 </h2>
@@ -34,13 +53,15 @@
             @endcan
 
             <!-- Pagination Dropdown -->
-            <form id="perPageForm" method="get" action="{{ route('pagination-perpage') }}" class="mt-3" style="width: 100px; float:right;">
-                <select name="perPage" id="perPage" class="form-select" onchange="this.form.submit()" >
-                    <option value="{{ $messages->total() }}" {{ $messages->perPage() == $messages->total() ? 'selected' : '' }}> All</option>
+            <form id="perPageForm" method="get" action="{{ route('pagination-perpage') }}" class="mt-3"
+                style="width: 100px; float:right;">
+                <select name="perPage" id="perPage" class="form-select" onchange="this.form.submit()">
+                    <option value="{{ $messages->total() }}"
+                        {{ $messages->perPage() == $messages->total() ? 'selected' : '' }}> All</option>
                     <option value="10" {{ $messages->perPage() == 10 ? 'selected' : '' }}>10</option>
                     <option value="20" {{ $messages->perPage() == 20 ? 'selected' : '' }}>20</option>
                     <option value="30" {{ $messages->perPage() == 30 ? 'selected' : '' }}>30</option>
-                    
+
                 </select>
 
                 {{-- <select name="perPage" id="perPage" class="form-select" onchange="this.form.submit()">
@@ -66,18 +87,31 @@
 
             </form>
 
-            <table class="table   table-striped text-white my-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="bg-warning rounded-1 text-white px-1 "> {{ $messages->count() }} Messages</span>
+
+                {{-- @if ($hasTrashedMessages) --}}
+                <a class="btn btn-success my-3" href="{{ route('restore.all.message') }}">Restore All Trashed Messages</a>
+                {{-- @endif --}}
+
+                <a class="btn btn-danger my-3" href="{{ route('delete.all.message') }}"
+                    style="width: 100px; float:right;">Delete All</a>
+            </div>
+
+            <table class="table table-bordered table-striped text-white my-2">
 
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Messages</th>
                 </tr>
+
                 @if ($messages->count())
                     @foreach ($messages as $message)
                         <tr>
                             {{-- @dd($message) --}}
-                            <td>{{ $message->name }}</td>
+                            <td>{{ $message->name }} <span class="bg-dark-subtle text-muted px-1 rounded-1">
+                                    {{ $message->created_at->diffForHumans() }}</span></td>
                             <td>
                                 {{ $message->email }}
                             </td>
@@ -110,7 +144,7 @@
                 @endif
 
             </table>
-           
+
             <!-- Pagination Links -->
             <div class="d-flex justify-content-center">
                 {{ $messages->links() }}
@@ -119,5 +153,17 @@
         </div>
     </div>
 
-    
+
 @endsection
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var autoCloseAlert = document.querySelector('.alert');
+
+        if (autoCloseAlert) {
+            setTimeout(function() {
+                autoCloseAlert.classList.add('d-none');
+            }, 3000); // Adjust the time as needed (3000 milliseconds = 3 seconds)
+        }
+    });
+</script>

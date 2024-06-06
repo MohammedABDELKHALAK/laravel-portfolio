@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\HomeController;
@@ -29,12 +28,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('gate');
 
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', [ShowMessagesController::class, 'index'] )->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/show/{id}', [ShowMessagesController::class, 'show'] )->middleware(['auth', 'verified'])->name('show.message');
+Route::get('/delete/all-mesagges', [ShowMessagesController::class, 'deleteAll'] )->middleware(['auth', 'verified'])->name('delete.all.message');
+Route::get('/restore/all-mesagges', [ShowMessagesController::class, 'restoreAll'] )->middleware(['auth', 'verified'])->name('restore.all.message');
+
 Route::get('/pagination', [ShowMessagesController::class, 'updatePagination'] )->middleware(['auth', 'verified'])->name('pagination-perpage');
 
 // Route::get('/messages', [ShowMessagesController::class, 'index']);
@@ -80,6 +84,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/{id}', [ProfileController::class, 'profileImage'])->name('profile.image');
     Route::delete('/profile/{id}', [ProfileController::class, 'forceDelete'])->name('profile.force.delete');
     Route::put('/profile/social/{id}', [ProfileController::class, 'socialform'])->name('profile.socialform');
+    
+   
 });
 
 require __DIR__.'/auth.php';

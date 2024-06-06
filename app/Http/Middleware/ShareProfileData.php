@@ -16,6 +16,9 @@ class ShareProfileData
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+// this middleware to share data to public pages of resume with visitor without being auth,
+//  it's unreasonable  to be auth to see your porfolio
+
     public function handle(Request $request, Closure $next): Response
     {
         if (Schema::hasTable('users')) {

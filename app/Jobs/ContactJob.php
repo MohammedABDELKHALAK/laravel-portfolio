@@ -40,7 +40,7 @@ class ContactJob implements ShouldQueue
     {
 //  i'm already used delay in sendmail method in contactController
 
-        // Set a delay of 10 minutes (600 seconds)
+        // Set a delay of 10 minutes (600 seconds) 
         // return now()->addMinutes(1);
 
         // Set a delay of 10 seconds

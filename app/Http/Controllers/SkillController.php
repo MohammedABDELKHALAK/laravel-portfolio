@@ -28,7 +28,8 @@ class SkillController extends Controller
     {
        return view(
             'skills.index', [
-                'skills' =>  Skill::with(['image'])->get()
+                //without puttin number will render 15 data as default number for each page
+                'skills' =>  Skill::with(['image'])->paginate(3)
                 // 'skills' =>  Skill::all()
     
             ]

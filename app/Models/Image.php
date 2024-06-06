@@ -11,6 +11,7 @@ class Image extends Model
     use HasFactory;
     use SoftDeletes;
 
+    // i use protected $primaryKey to imageable_id because i got delete $table->id(); from migration file of images
     protected $primaryKey = 'imageable_id';
     protected $fillable = ['path'];
 
