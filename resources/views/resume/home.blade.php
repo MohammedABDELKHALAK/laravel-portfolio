@@ -49,9 +49,9 @@
                 <div class="col-xxl-7">
                     <!-- Header profile picture-->
                     <div class="d-flex justify-content-center mt-5 mt-xxl-0">
-                        <div class="profile bg-gradient-primary-to-secondary">
+                        <div class="profile bg-gradient-primary-to-secondary ">
 
-                            <img class="profile-img" src="fix_images/mohammed.png" alt="..."
+                            <img class="profile-img " src="fix_images/dev.jpg" alt="..."
                                 style="filter: drop-shadow(0 0 100px #121212)" />
 
                         </div>

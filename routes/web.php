@@ -37,7 +37,7 @@ Route::get('/', [HomeController::class, 'index'])->name('gate');
 Route::get('/dashboard', [ShowMessagesController::class, 'index'] )->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/show/{id}', [ShowMessagesController::class, 'show'] )->middleware(['auth', 'verified'])->name('show.message');
 Route::get('/delete/all-mesagges', [ShowMessagesController::class, 'deleteAll'] )->middleware(['auth', 'verified'])->name('delete.all.message');
-Route::get('/restore/all-mesagges', [ShowMessagesController::class, 'restoreAll'] )->middleware(['auth', 'verified'])->name('restore.all.message');
+Route::post('/restore/all-mesagges', [ShowMessagesController::class, 'restoreAll'] )->middleware(['auth', 'verified'])->name('restore.all.message');
 
 Route::get('/pagination', [ShowMessagesController::class, 'updatePagination'] )->middleware(['auth', 'verified'])->name('pagination-perpage');
 

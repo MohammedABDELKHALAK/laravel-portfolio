@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ShowMessagesController extends Controller
 
@@ -12,9 +11,6 @@ class ShowMessagesController extends Controller
 
     public function index()
     {
-
-        $hasTrashedMessages = Message::onlyTrashed()->exists();
-
         return view(
             'dashboard',
             [
@@ -24,7 +20,6 @@ class ShowMessagesController extends Controller
                 // and this use numbers buttons
 
                 'messages' =>  Message::dernier()->paginate(10),
-                'hasTrashedMessages' =>  $hasTrashedMessages 
             ]
         );
     }
@@ -65,24 +60,26 @@ class ShowMessagesController extends Controller
 
     public function restoreAll()
     {
-// Restore all trashed messages in one query
+        // Restore all trashed messages in one query
         // Message::onlyTrashed()->restore();
 
-  // Count the trashed messages
-  $trashedCount = Message::onlyTrashed()->count();
-  if ($trashedCount > 0) {
-    // Restore all trashed messages in one query
-    Message::onlyTrashed()->restore();
+        // Count the trashed messages
+        $trashedCount = Message::onlyTrashed()->count();
+        if ($trashedCount > 0) {
+            // Restore all trashed messages in one query
+            Message::onlyTrashed()->restore();
 
-    // Add success alert
-    return redirect()->back()->with('status', 'success')->with('message', 'All trashed messages have been restored.');
-} else {
-    // Add warning alert
-    return redirect()->back()->with('status', 'warning')->with('message', 'There are no trashed messages to restore.');
-}
-       
+            //     // Return success response
+            //     return response()->json(['status' => 'success', 'message' => 'All trashed messages have been restored.']);
+            // } else {
+            //     // Return warning response
+            //     return response()->json(['status' => 'warning', 'message' => 'There are no trashed messages to restore.']);
+
+            // Add success alert
+            return redirect()->back()->with('status', 'success')->with('message', 'All trashed messages have been restored.');
+        } else {
+            // Add warning alert
+            return redirect()->back()->with('status', 'warning')->with('message', 'There are no trashed messages to restore.');
+        }
     }
-
-
-    
 }

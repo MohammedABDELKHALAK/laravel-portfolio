@@ -24,6 +24,8 @@ dd($hasTrashedMessages);
 
     <div class="py-12">
 
+        <div id="alert-container"></div>
+
         @if (session('status') && session('message'))
             @if (session('status') == 'success')
                 <div class="alert alert-success">
@@ -91,42 +93,48 @@ dd($hasTrashedMessages);
                 <span class="bg-warning rounded-1 text-white px-1 "> {{ $messages->count() }} Messages</span>
 
                 {{-- @if ($hasTrashedMessages) --}}
-                <a class="btn btn-success my-3" href="{{ route('restore.all.message') }}">Restore All Trashed Messages</a>
+                {{-- <a id="restore-btn" class="btn btn-success my-3" href="{{ route('restore.all.message') }}">Restore All Trashed Messages</a> --}}
                 {{-- @endif --}}
+
+                <form id="restore-form" action="{{ route('restore.all.message') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-success my-3"> Restore All Trashed Messages </button>
+                </form>
+
 
                 <a class="btn btn-danger my-3" href="{{ route('delete.all.message') }}"
                     style="width: 100px; float:right;">Delete All</a>
             </div>
+            <div id="messages-container">
+                <table class="table table-bordered table-striped text-white my-2">
 
-            <table class="table table-bordered table-striped text-white my-2">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Messages</th>
+                    </tr>
 
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Messages</th>
-                </tr>
-
-                @if ($messages->count())
-                    @foreach ($messages as $message)
-                        <tr>
-                            {{-- @dd($message) --}}
-                            <td>{{ $message->name }} <span class="bg-dark-subtle text-muted px-1 rounded-1">
-                                    {{ $message->created_at->diffForHumans() }}</span></td>
-                            <td>
-                                {{ $message->email }}
-                            </td>
-                            <td class="message-cell">
-                                <a href="{{ route('show.message', ['id' => $message->id]) }}">
-                                    {{ $message->message }}
-                                </a>
-                            </td>
-                            {{-- <td>
+                    @if ($messages->count())
+                        @foreach ($messages as $message)
+                            <tr>
+                                {{-- @dd($message) --}}
+                                <td>{{ $message->name }} <span class="bg-dark-subtle text-muted px-1 rounded-1">
+                                        {{ $message->created_at->diffForHumans() }}</span></td>
+                                <td>
+                                    {{ $message->email }}
+                                </td>
+                                <td class="message-cell">
+                                    <a href="{{ route('show.message', ['id' => $message->id]) }}">
+                                        {{ $message->message }}
+                                    </a>
+                                </td>
+                                {{-- <td>
                                 
                                 <form class="delete inline" method="POST" action="{{ route('skills.destroy', ['skill' => $skill->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     {{-- <button class="btn btn-danger" type="submit">Delete</button> --}}
-                            {{-- <a onclick="event.preventDefault(); this.closest('form').submit();"
+                                {{-- <a onclick="event.preventDefault(); this.closest('form').submit();"
                                         href=" {{ route('skills.destroy', ['skill' => $skill->id]) }}"><span
                                             class="badge text-bg-danger">Delete</span></a>
 
@@ -134,17 +142,17 @@ dd($hasTrashedMessages);
 
                             </td> --}}
 
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="fw-bold" colspan="3">There is no Mesages to you</td>
+
                         </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td class="fw-bold" colspan="3">There is no Mesages to you</td>
+                    @endif
 
-                    </tr>
-                @endif
-
-            </table>
-
+                </table>
+            </div>
             <!-- Pagination Links -->
             <div class="d-flex justify-content-center">
                 {{ $messages->links() }}

@@ -11595,48 +11595,52 @@ html {
   bottom: 0;
   left: 50%;
   /* border-radius: 5vw; */
-  border-radius: 15px 50px 250px 50px;
+  border-radius: 15px 50px 300px 130px;
   transform: translateX(-50%);
 }
 
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
   .profile {
     height: 60vw;
     width: 60vw;
   }
   .profile .profile-img {
     height: 65vw;
+    border-radius: 15px 50px 140px 50px;
   }
 
 }
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .profile {
     height: 50vw;
     width: 50vw;
   }
   .profile .profile-img {
     height: 55vw;
+    border-radius: 15px 50px 200px 100px;
   }
  
 }
-@media (min-width: 992px) {
+@media (max-width: 992px) {
   .profile {
     height: 40vw;
     width: 40vw;
   }
   .profile .profile-img {
     height: 45vw;
+    border-radius: 15px 50px 200px 100px;
   }
 
 }
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
   .profile {
     height: 35vw;
     width: 35vw;
   }
   .profile .profile-img {
     height: 40vw;
+    border-radius: 15px 50px 200px 100px;
   }
 
 }
